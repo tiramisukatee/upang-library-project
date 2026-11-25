@@ -1,0 +1,1342 @@
+/* Shared color values used throughout the site's theme. */
+:root {
+  --green: #347a50;
+  --dark: #285d3e;
+  --yellow: #f6d365;
+  --soft: #f1f7f2;
+  --ink: #1d2a22;
+  --line: #d6e2da;
+}
+
+/* Includes element padding and borders in each element's declared dimensions. */
+* {
+  box-sizing: border-box;
+}
+
+/* Sets the page's base font, colors, spacing, and vertical flex layout. */
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--ink);
+  background: #f7faf7;
+  line-height: 1.55;
+}
+
+/* Shows the library slideshow in a soft left-side band behind page content. */
+.library-slideshow {
+  position: fixed;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: min(42vw, 600px);
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.22;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 48%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(to right, #000 0%, #000 48%, transparent 100%);
+}
+
+.library-slideshow img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: library-photo-fade 18s infinite;
+}
+
+.library-slideshow img:nth-child(2) {
+  animation-delay: 6s;
+}
+
+.library-slideshow img:nth-child(3) {
+  animation-delay: 12s;
+}
+
+/* Adds a faded campus photo on the right, blending it toward the content. */
+.campus-background {
+  position: fixed;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(42vw, 600px);
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.14;
+  -webkit-mask-image: linear-gradient(
+    to left,
+    #000 0%,
+    #000 48%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(to left, #000 0%, #000 48%, transparent 100%);
+}
+
+.campus-background img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes library-photo-fade {
+  0%,
+  5%,
+  38%,
+  100% {
+    opacity: 0;
+  }
+
+  12%,
+  31% {
+    opacity: 1;
+  }
+}
+
+/* Keeps navigation, content, and footer above the slideshow. */
+.topbar,
+.site-header,
+main,
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Lets the main content expand so the footer sits at the bottom on short pages. */
+main {
+  flex: 1;
+}
+
+/* Prevents the header from shrinking in the page flex layout. */
+.site-header {
+  flex-shrink: 0;
+}
+
+/* Uses the inherited site font for page headings and brand text. */
+h1,
+h2,
+h3,
+.brand {
+  font-family: inherit;
+}
+
+/* Sets the default color for hyperlinks. */
+a {
+  color: var(--green);
+}
+
+/* Centers content and limits its maximum width. */
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Makes the main wrapper full-width while reserving space above the footer. */
+main.wrap {
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+/* Uses the homepage's available vertical space to bring its cards toward the footer. */
+.home-main {
+  display: flex;
+  flex-direction: column;
+}
+
+main.wrap.home-main {
+  padding-bottom: 25px;
+}
+
+.home-main .grid3 {
+  margin-top: auto;
+}
+
+.home-main .hero {
+  margin-top: 12px;
+}
+
+.hero h1 {
+  -webkit-text-stroke: 1px #fff;
+  paint-order: stroke fill;
+}
+
+/* Styles the narrow information strip above the navigation. */
+.topbar {
+  background: rgb(40 93 62 / 94%);
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 6px 20px;
+  text-align: center;
+}
+
+/* Applies the primary green background and yellow bottom border to the header. */
+.site-header {
+  background: rgb(52 122 80 / 94%);
+  border-bottom: 4px solid rgb(246 211 101 / 90%);
+}
+
+/* Aligns the brand and navigation and allows them to wrap on small screens. */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+/* Gives login and registration headers more room to align the brand left. */
+.auth-page .topbar {
+  display: none;
+}
+
+.auth-page .site-header .nav {
+  max-width: none;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.auth-page .site-footer {
+  border-top-width: 2px;
+  padding: 6px 0;
+  font-size: 0.8rem;
+}
+
+/* Arranges the site brand text and removes its link decoration. */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+/* Displays the brand subtitle on its own smaller line. */
+.brand small {
+  display: block;
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+
+/* Places navigation links in a horizontal row. */
+nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Styles links within the top navigation. */
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* Underlines navigation links when hovered. */
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Shared shape, spacing, typography, and pointer behavior for buttons and button links. */
+.btn {
+  display: inline-block;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font: 600 0.95rem Arial, Helvetica, sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Green primary button and its hover color. */
+.btn-green {
+  background: var(--green);
+  color: #fff;
+}
+
+.btn-green:hover {
+  background: var(--dark);
+}
+
+/* Yellow navigation button and its hover color. */
+.btn-yellow {
+  background: var(--yellow);
+  color: var(--dark) !important;
+}
+
+.btn-yellow:hover {
+  background: #f2c64f;
+}
+
+/* White button with a green outline for secondary actions. */
+.btn-outline {
+  border-color: var(--green);
+  color: var(--green);
+  background: #fff;
+  margin-left: 8px;
+}
+
+.logout-button {
+  border-color: #fff;
+  background: transparent;
+  color: #fff;
+}
+
+.logout-button:hover {
+  background: #fff;
+  color: var(--dark);
+  text-decoration: none;
+}
+
+.dashboard-home-link {
+  text-decoration: underline;
+  text-decoration-color: #fff;
+  text-underline-offset: 4px;
+}
+
+/* Compact button style used inside dashboard tables. */
+.btn-small {
+  padding: 5px 12px;
+  background: var(--soft);
+  border-color: var(--green);
+  color: var(--green);
+}
+
+/* Red outline and text for destructive actions such as deleting a visit. */
+.btn-danger {
+  border-color: #c62828;
+  color: #c62828;
+}
+
+/* Visible keyboard focus indicator for interactive elements. */
+:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 2px;
+}
+
+/* Hero layout and spacing for the main homepage introduction. */
+.hero {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 28px;
+  align-items: center;
+  min-height: 280px;
+  padding: 24px 0 30px;
+}
+
+/* Sizes the transparent college seal in the open side of the hero section. */
+.hero-seal {
+  display: block;
+  width: min(100%, 190px);
+  height: auto;
+  justify-self: start;
+  margin-left: 56px;
+  filter: drop-shadow(0 10px 24px rgb(40 93 62 / 12%));
+}
+
+/* Large, prominent hero heading. */
+.hero h1 {
+  font-size: 2.3rem;
+  line-height: 1.2;
+  color: var(--dark);
+  margin: 0 0 16px;
+}
+
+/* Enlarges hero text and limits line length for readability. */
+.hero p {
+  font-size: 1.1rem;
+  max-width: 52ch;
+  margin: 0 0 16px;
+}
+
+/* Responsive grid for the three homepage feature cards. */
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* Shared bordered card appearance for feature and dashboard panels. */
+.panel {
+  background: rgb(255 255 255 / 90%);
+  border: 1px solid rgb(214 226 218 / 90%);
+  border-top: 4px solid rgb(52 122 80 / 85%);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 50px 0;
+  box-shadow: 0 8px 24px rgb(29 42 34 / 6%);
+  backdrop-filter: blur(4px);
+}
+
+/* Reduces spacing around panels inside the homepage feature grid. */
+.grid3 .panel {
+  margin: 0;
+  padding: 18px;
+  border-top: 1px solid rgb(214 226 218 / 90%);
+  box-shadow: 0 3px 12px rgb(29 42 34 / 5%);
+}
+
+/* Shows a cropped library photo and compact source credit in each feature card. */
+.feature-photo {
+  margin: 0 0 14px;
+}
+
+.feature-photo img {
+  display: block;
+  width: 100%;
+  height: 155px;
+  object-fit: cover;
+  border-radius: 7px;
+}
+
+/* Styles headings inside panels. */
+.panel h3 {
+  margin: 0 0 10px;
+  color: var(--dark);
+}
+
+/* Two-column layout for the dashboard's stamp card and entry panel. */
+.cols {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 20px;
+}
+
+/* Adjusts panel spacing when panels appear inside the two-column layout. */
+.cols .panel {
+  margin: 20px 0 0;
+}
+
+/* Dashed outline highlights the library stamp-card panel. */
+.cols .card-stamp {
+  border: 2px dashed var(--green);
+}
+
+/* Sidebar and content layout for the student dashboard. */
+[data-page="dashboard"] .topbar,
+[data-page="dashboard"] .site-header,
+[data-page="dashboard"] .site-footer,
+.admin-page .topbar,
+.admin-page .site-header,
+.admin-page .site-footer {
+  width: calc(100% - 240px);
+  margin-left: 240px;
+}
+
+[data-page="dashboard"] .site-header,
+.admin-page .site-header {
+  border-bottom: 0;
+}
+
+[data-page="dashboard"] .site-header .nav,
+.admin-page .site-header .nav {
+  justify-content: flex-start;
+}
+
+.student-page .site-header .brand {
+  margin-right: auto;
+  text-align: left;
+}
+
+.student-page .topbar,
+.student-page .site-header,
+.student-page .site-footer {
+  width: calc(100% - 240px);
+  margin-left: 240px;
+}
+
+.student-page .topbar {
+  padding-left: clamp(20px, 4vw, 48px);
+  text-align: left;
+}
+
+.student-page .site-header .wrap {
+  max-width: none;
+  margin: 0;
+}
+
+[data-page="dashboard"] .site-header .wrap,
+[data-page="dashboard"] .site-footer .wrap,
+.admin-page .site-header .wrap,
+.admin-page .site-footer .wrap {
+  max-width: 1280px;
+  padding-right: clamp(20px, 4vw, 48px);
+  padding-left: clamp(20px, 4vw, 48px);
+}
+
+.admin-page .site-header .wrap {
+  max-width: none;
+  margin: 0;
+}
+
+.library-card-page .site-footer {
+  text-align: center;
+}
+
+.dashboard-layout {
+  width: calc(100% - 240px);
+  flex: 1;
+  margin-left: 240px;
+  padding: 22px clamp(20px, 4vw, 48px) 30px;
+}
+
+.dashboard-sidebar {
+  position: fixed;
+  z-index: 2;
+  inset: 0 auto 0 0;
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  height: 100vh;
+  padding: 28px 18px 20px;
+  background: var(--dark);
+  box-shadow: 4px 0 18px rgb(29 42 34 / 12%);
+}
+
+.library-card-page {
+  background: #fbfcfb;
+}
+
+.library-card-page .library-slideshow,
+.library-card-page .campus-background {
+  opacity: 0.06;
+}
+
+.sidebar-heading {
+  margin: 0 0 14px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+}
+
+.sidebar-nav a {
+  display: block;
+  padding: 9px 10px;
+  border-radius: 5px;
+  color: #fff;
+  text-align: left;
+}
+
+.sidebar-nav a[aria-current="page"] {
+  background: rgb(255 255 255 / 14%);
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-decoration: underline;
+  text-decoration-color: #fff;
+  text-underline-offset: 4px;
+}
+
+.sidebar-nav a:not(.logout-button):hover {
+  background: rgb(255 255 255 / 12%);
+  text-decoration-color: #fff;
+}
+
+.sidebar-nav .logout-button {
+  margin: auto 16px 20px;
+}
+
+.sidebar-nav form {
+  display: flex;
+  margin: auto 0 0;
+}
+
+.sidebar-nav form .logout-button {
+  width: 100%;
+  margin: 0 16px 20px;
+}
+
+.dashboard-main {
+  min-width: 0;
+  padding-bottom: 8px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 20px;
+}
+
+.dashboard-panel {
+  min-width: 0;
+  margin: 14px 0 0;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.student-overview {
+  margin-top: 20px;
+}
+
+.student-overview .summary-card {
+  align-content: start;
+  gap: 8px;
+  margin: 0;
+  padding: 22px;
+}
+
+.student-overview .summary-card a {
+  margin-top: 4px;
+}
+
+.profile-page-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 24px;
+  margin-top: 0;
+  padding: 24px;
+  border: 1px solid #edf1ee;
+  border-top: 1px solid #edf1ee;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 12px 32px rgb(29 42 34 / 8%);
+}
+
+.library-card-instructions h2 {
+  margin: 0 0 12px;
+  color: var(--dark);
+}
+
+.library-card-instructions p {
+  max-width: 46ch;
+  margin: 0;
+  color: #5b6b61;
+}
+
+.profile-page-panel .digital-library-card {
+  width: 100%;
+  max-width: 420px;
+  justify-self: center;
+}
+
+.visit-page-panel,
+.borrowed-books-panel {
+  margin-top: 20px;
+}
+
+.dashboard-panel h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: var(--dark);
+}
+
+.profile-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.profile-panel > div {
+  flex: 1 1 0;
+}
+
+.profile-panel .digital-library-card {
+  flex: 0 1 420px;
+}
+
+.profile-panel > div > :last-child {
+  margin-bottom: 0;
+}
+
+.digital-library-card {
+  width: 100%;
+  overflow: hidden;
+  padding: 20px;
+  border: 1px solid rgb(255 255 255 / 25%);
+  border-radius: 10px;
+  background: linear-gradient(135deg, #347a50, #214b34);
+  box-shadow: 0 8px 20px rgb(29 42 34 / 16%);
+  color: #fff;
+}
+
+.library-card-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgb(255 255 255 / 35%);
+}
+
+.library-card-heading img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.library-card-heading strong,
+.library-card-heading small {
+  display: block;
+}
+
+.library-card-heading strong {
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+}
+
+.library-card-heading small {
+  margin-top: 4px;
+  opacity: 0.85;
+}
+
+.library-card-identity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 14px;
+}
+
+.library-card-photo,
+.library-card-photo-placeholder {
+  flex: 0 0 76px;
+  width: 76px;
+  height: 92px;
+  border: 1px solid rgb(255 255 255 / 55%);
+  border-radius: 6px;
+}
+
+.library-card-photo {
+  object-fit: cover;
+}
+
+.library-card-photo-placeholder {
+  display: grid;
+  place-items: center;
+  padding: 8px;
+  background: rgb(255 255 255 / 12%);
+  color: #fff;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.library-card-details {
+  display: grid;
+  min-width: 0;
+  flex: 1;
+  gap: 5px;
+}
+
+.library-card-label {
+  margin-top: 6px;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  opacity: 0.8;
+}
+
+.library-card-details strong {
+  overflow-wrap: anywhere;
+}
+
+.visit-history {
+  grid-column: 1 / -1;
+}
+
+.dashboard-panel input {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #fff;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.dashboard-panel input:invalid:not(:placeholder-shown) {
+  border-color: #e2e8f0;
+}
+
+.dashboard-panel input:focus,
+.dashboard-panel textarea:focus,
+.dashboard-panel input:invalid:not(:placeholder-shown):focus {
+  border-color: var(--green);
+  outline: none;
+  box-shadow: 0 0 0 3px rgb(52 122 80 / 14%);
+}
+
+.dashboard-panel .btn {
+  border-radius: 8px;
+}
+
+.dashboard-panel .btn-small {
+  padding: 7px 12px;
+  border-color: #cfe2d5;
+  border-radius: 8px;
+  background: #edf6ef;
+  color: var(--dark);
+}
+
+.dashboard-panel .btn-small:hover {
+  background: #dceee1;
+}
+
+.history-list {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.history-list li + li {
+  margin-top: 6px;
+}
+
+.record-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.summary-card {
+  display: grid;
+  gap: 5px;
+  margin: 14px 0 0;
+  padding: 18px 20px;
+}
+
+.summary-label {
+  color: #5b6b61;
+  font-size: 0.9rem;
+}
+
+.summary-card strong {
+  color: var(--dark);
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+.admin-records {
+  margin-top: 18px;
+}
+
+.records-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.records-toolbar h2 {
+  margin: 0;
+  color: var(--dark);
+}
+
+.records-toolbar .muted {
+  margin-bottom: 0;
+}
+
+.records-refresh {
+  flex: 0 0 auto;
+  margin: 0;
+  border-radius: 8px;
+}
+
+.inventory-form {
+  display: grid;
+  grid-template-columns:
+    minmax(180px, 1fr)
+    minmax(160px, 1fr)
+    minmax(140px, 0.6fr)
+    auto;
+  align-items: end;
+  gap: 14px;
+}
+
+.inventory-form label {
+  margin-bottom: 0;
+}
+
+.inventory-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.inventory-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.summary-card > a {
+  color: var(--green);
+  font-weight: 600;
+}
+
+.records-search {
+  margin-top: 16px;
+}
+
+.records-search input {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.records-search input:focus {
+  border-color: var(--green);
+  outline: none;
+  box-shadow: 0 0 0 3px rgb(52 122 80 / 14%);
+}
+
+.student-record-table {
+  min-width: 760px;
+}
+
+.record-secondary {
+  display: block;
+  margin-top: 4px;
+  color: #5b6b61;
+  font-size: 0.78rem;
+}
+
+.record-book-list {
+  min-width: 220px;
+  margin: 0;
+  padding-left: 18px;
+}
+
+.record-book-list li + li {
+  margin-top: 6px;
+}
+
+.alert[hidden] {
+  display: none;
+}
+
+/* Styles the dashboard's student welcome heading. */
+.page-title {
+  font-size: 1.8rem;
+  color: var(--dark);
+  margin: 28px 0 0;
+}
+
+/* Muted text style for secondary student details. */
+.muted {
+  color: #5b6b61;
+  margin-top: 2px;
+}
+
+/* Centered card layout used by the login and registration forms. */
+.form-card {
+  max-width: 460px;
+  margin: 40px auto;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--yellow);
+  border-radius: 6px;
+  padding: 28px;
+}
+
+/* Heading style within the login and registration cards. */
+.form-card h2 {
+  margin-top: 0;
+  color: var(--dark);
+}
+
+/* Displays form labels as separate readable blocks. */
+label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+/* Shared appearance and full-width layout for text fields and dropdowns. */
+input,
+select,
+textarea {
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  padding: 10px;
+  border: 1px solid #aebfb4;
+  border-radius: 4px;
+  font: inherit;
+}
+
+.phone-input {
+  display: flex;
+  align-items: stretch;
+  margin-top: 5px;
+}
+
+.phone-input input {
+  min-width: 0;
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.phone-prefix {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid #aebfb4;
+  border-right: 0;
+  border-radius: 4px 0 0 4px;
+  background: #f1f7f2;
+  color: var(--dark);
+  font-weight: 600;
+}
+
+.profile-edit-panel h2 {
+  margin: 0;
+  color: var(--dark);
+}
+
+.profile-edit-heading {
+  margin-bottom: 18px;
+}
+
+.profile-edit-heading .muted,
+.profile-edit-actions .muted {
+  margin: 4px 0 0;
+}
+
+.profile-photo-control {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.profile-photo-control label {
+  flex: 1;
+  margin: 0;
+}
+
+.profile-photo-control input[type="file"] {
+  padding: 8px;
+}
+
+.profile-photo-placeholder {
+  display: grid;
+  flex: 0 0 96px;
+  width: 96px;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px dashed #aebfb4;
+  border-radius: 4px;
+  background: var(--soft);
+  color: var(--dark);
+  font-weight: 700;
+}
+
+.profile-edit-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 18px;
+}
+
+.profile-address,
+.profile-edit-actions {
+  grid-column: 1 / -1;
+}
+
+.profile-edit-actions .btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+/* De-emphasizes helper text within form labels. */
+label small {
+  font-weight: 400;
+  color: #5b6b61;
+}
+
+/* Centers alternate actions such as links between login and registration. */
+.alt {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+/* Places borrowing form controls in a flexible horizontal row. */
+.inline {
+  display: flex;
+  gap: 14px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+/* Gives each control in an inline form flexible width and a minimum size. */
+.inline label {
+  flex: 1;
+  min-width: 200px;
+  margin: 0;
+}
+
+/* Styles library check-in status text for inside and outside states. */
+.status {
+  font-weight: 600;
+}
+
+.status.in {
+  color: var(--green);
+}
+
+.status.out {
+  color: #6b6b6b;
+}
+
+/* Allows wide tables to scroll horizontally instead of overflowing. */
+.table-wrap {
+  overflow-x: auto;
+}
+
+/* Makes dashboard tables full-width with merged borders. */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Aligns and spaces table content and separates rows. */
+th,
+td {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+/* Distinguishes table header cells from the data rows. */
+th {
+  background: var(--soft);
+  color: var(--dark);
+  font-size: 0.85rem;
+}
+
+/* Removes default margins from forms inside table cells. */
+td form {
+  margin: 0;
+}
+
+/* Shared pill shape and typography for status labels in dashboard tables. */
+.tag {
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Color variants for healthy, upcoming, and overdue statuses. */
+.tag.green {
+  background: #e6f4ea;
+  color: var(--dark);
+}
+
+.tag.neutral {
+  background: #edf1ee;
+  color: #536258;
+}
+
+.tag.yellow {
+  background: #fff0b8;
+  color: #6b4e00;
+}
+
+.tag.red {
+  background: #fdecea;
+  color: #8e1b1b;
+}
+
+/* Footer colors, border, spacing, and small-print text size. */
+.site-footer {
+  margin-top: auto;
+  flex-shrink: 0;
+  text-align: center;
+  background: rgb(40 93 62 / 94%);
+  color: #e8f1ec;
+  border-top: 4px solid rgb(246 211 101 / 90%);
+  padding: 16px 0;
+  font-size: 0.85rem;
+  backdrop-filter: blur(6px);
+}
+
+/* Keeps footer paragraphs compact. */
+.site-footer p {
+  margin: 4px 0;
+}
+
+/* At narrow widths, stack grid sections and reduce the hero heading size. */
+@media (max-width: 760px) {
+  .library-slideshow {
+    width: 100vw;
+    opacity: 0.12;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 80%);
+    mask-image: linear-gradient(to bottom, #000 0%, transparent 80%);
+  }
+
+  .campus-background {
+    width: 62vw;
+    opacity: 0.1;
+    -webkit-mask-image: linear-gradient(to left, #000 0%, transparent 100%);
+    mask-image: linear-gradient(to left, #000 0%, transparent 100%);
+  }
+
+  .hero,
+  .cols,
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  [data-page="dashboard"] .topbar,
+  [data-page="dashboard"] .site-header,
+  [data-page="dashboard"] .site-footer,
+  .student-page .topbar,
+  .student-page .site-header,
+  .student-page .site-footer,
+  .admin-page .topbar,
+  .admin-page .site-header,
+  .admin-page .site-footer {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  [data-page="dashboard"] .site-header .wrap,
+  [data-page="dashboard"] .site-footer .wrap,
+  .student-page .site-header .wrap,
+  .admin-page .site-header .wrap,
+  .admin-page .site-footer .wrap {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .dashboard-layout {
+    width: 100%;
+    margin-left: 0;
+    padding: 16px 20px 24px;
+  }
+
+  .record-summary {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .inventory-form {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .inventory-form-actions {
+    justify-self: start;
+  }
+
+  .records-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .records-refresh {
+    align-self: flex-start;
+  }
+
+  .dashboard-sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+    padding: 16px;
+  }
+
+  .sidebar-nav {
+    flex: none;
+  }
+
+  .sidebar-nav .logout-button {
+    margin: 10px 16px 20px;
+  }
+
+  .profile-panel {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .profile-page-panel {
+    grid-template-columns: 1fr;
+    padding: 20px 16px;
+    gap: 20px;
+  }
+
+  .profile-edit-form {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-page-panel .digital-library-card {
+    width: min(100%, 420px);
+    justify-self: center;
+  }
+
+  .digital-library-card {
+    padding: 18px;
+  }
+
+  .library-card-identity {
+    gap: 12px;
+  }
+
+  .library-card-photo,
+  .library-card-photo-placeholder {
+    flex-basis: 76px;
+    width: 76px;
+    height: 92px;
+  }
+
+  .profile-panel .digital-library-card {
+    flex-basis: auto;
+  }
+
+  .visit-history {
+    grid-column: auto;
+  }
+
+  .hero {
+    gap: 22px;
+    padding: 32px 0;
+  }
+
+  .hero-seal {
+    width: 150px;
+    justify-self: center;
+    margin-left: 0;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 980px) {
+  .hero-seal {
+    margin-left: 0;
+  }
+}
+
+/* Shows one static library image when the visitor prefers reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  .library-slideshow img {
+    animation: none;
+  }
+
+  .library-slideshow img:first-child {
+    opacity: 1;
+  }
+}
